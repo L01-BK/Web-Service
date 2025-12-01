@@ -43,11 +43,13 @@ jobs:
       
       - name: Push to Docker Hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$IMAGE_TAG
+
       - name: Install Render CLI
         run: |
           curl -L https://github.com/render-oss/cli/releases/download/v1.1.0/cli_1.1.0_linux_amd64.zip -o render.zip
-          unzip render.zip
-          sudo mv cli_v1.1.0 /usr/local/bin/render
+          unzip -o render.zip -d render-cli
+          sudo mv render-cli/cli_v1.1.0 /usr/local/bin/render
+          render --version
 
       - name: Deploy Docker service to Render
         env:
