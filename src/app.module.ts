@@ -13,12 +13,7 @@ import { AppService } from './app.service';
       url: process.env.DATABASE_URL,
       entities: [User],
       synchronize: true, 
-      ssl: true,
-      extra: {
-        ssl: {
-          rejectUnauthorized: false,
-        },
-      },
+      ssl: { rejectUnauthorized: false }, 
     }),
     TypeOrmModule.forFeature([User]),
   ],
